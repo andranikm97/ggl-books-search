@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import './styles/search.css';
 
-const Search = () => {
+const Search = (props) => {
   const initialState = {
     query: '',
-    category: '',
-    sort: '',
+    category: 'all',
+    sort: 'newest',
+    isButtonDisabled: true,
   };
 
   const [state, setState] = useState(initialState);
@@ -16,6 +17,18 @@ const Search = () => {
       ...previousState,
       [name]: value,
     }));
+  };
+
+  const handleSearch = () => {
+    if (query && category && sort) {
+      try {
+        props.submitSearch(state);
+      } catch {
+        setState(initialState);
+      }
+    } else {
+      alert('Please enter a query!');
+    }
   };
 
   const { query, category, sort } = state;
@@ -31,7 +44,9 @@ const Search = () => {
           type='text'
           placeholder='Enter book name, author, category or etc.'
         />
-        <button className='search-button'> Search </button>
+        <button className='search-button' onClick={handleSearch}>
+          Search
+        </button>
       </div>
       <div className='search-options'>
         <div>
