@@ -1,61 +1,67 @@
 import { toJS } from 'mobx';
 import React, { useState } from 'react';
 import './styles/App.css';
-import { getBooks } from './apiWorker';
+import { getBooks, loadMoreBooks } from './apiWorker';
 import Search from './components/Search';
 import Books from './components/Books';
 import Loader from './components/Loader';
-import { useBooksStore } from './stores/BooksContext';
-import { useObserver } from 'mobx-react-lite';
+import { useBooksStore } from './contexts/BooksContext';
+import { Observer } from 'mobx-react-lite';
 
 function App() {
-  // const [loading, setFalse] = useState(false);
   const [request, setRequest] = useState(false);
-  // const [books, setBooks] = useState({
-  //   results: [],
-  //   totalFound: 0,
-  //   page: 1,
-  // });
-
   const booksStore = useBooksStore();
-  // const [total, setTotal] = useState(0);
 
   const submitSearch = (options) => {
     setRequest(true);
-    return getBooks(options)
+    return getBooks(options, 1)
       .then((data) => {
         console.log(data);
-        // setBooks({
-        //   results: data.items,
-        //   totalFound: data.totalItems,
-        //   page: books.page++,
-        // });
         const { items, totalItems } = data;
-        console.log(data);
         booksStore.addBooks(items);
+        booksStore.nextPage();
         booksStore.setTotalFound(totalItems);
         console.log(toJS(booksStore));
       })
       .then(() => setRequest(false));
   };
 
-  return useObserver(() => (
-    <div className='main-container'>
-      <Search submitSearch={submitSearch} page={toJS(booksStore.page)} />
-      <div className='data-container'>
-        {toJS(booksStore.books).length !== 0 ? (
-          <Books
-            books={toJS(booksStore.books)}
-            totalFound={toJS(booksStore.totalFound)}
-          />
-        ) : request ? (
-          <Loader />
-        ) : (
-          'Search for some books!'
-        )}
-      </div>
-    </div>
-  ));
+  const searchForMore = () => {
+    return loadMoreBooks(
+      toJS(booksStore.currentQuery),
+      toJS(booksStore.page),
+    ).then((data) => {
+      console.log(data);
+      const { items } = data;
+      booksStore.addBooks(items);
+      booksStore.nextPage();
+
+      console.log(toJS(booksStore));
+    });
+  };
+
+  return (
+    <Observer>
+      {() => (
+        <div className='main-container'>
+          <Search submitSearch={submitSearch} page={toJS(booksStore.page)} />
+          <div className='data-container'>
+            {toJS(booksStore.books).length !== 0 ? (
+              <Books
+                books={toJS(booksStore.books)}
+                totalFound={toJS(booksStore.totalFound)}
+                searchForMore={searchForMore}
+              />
+            ) : request ? (
+              <Loader />
+            ) : (
+              'Search for some books!'
+            )}
+          </div>
+        </div>
+      )}
+    </Observer>
+  );
 }
 
 export default App;
