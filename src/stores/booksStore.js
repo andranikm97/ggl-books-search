@@ -11,6 +11,12 @@ export function createBooksStore() {
     nextPage: function () {
       this.page++;
     },
+    clearPage: function () {
+      this.page = 1;
+    },
+    clearBooks: function () {
+      this.books = [];
+    },
     addBooks: function (newBooks) {
       newBooks.forEach((element) => {
         element._id = nanoid();

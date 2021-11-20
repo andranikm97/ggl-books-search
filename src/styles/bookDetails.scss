@@ -1,0 +1,45 @@
+.book-detail-container {
+  height: 95%;
+  max-height: 95%;
+  margin-top: 25px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  padding: 20px;
+  padding-right: 40px;
+  padding-top: 30px;
+  background-color: #f0e9d2;
+  border-radius: 10px;
+
+  .image-container {
+    margin-right: 10px;
+    margin-bottom: 10px;
+    max-width: 325px;
+    min-width: 150px;
+    max-height: fit-content;
+    img {
+      width: 95%;
+    }
+  }
+
+  .info-container {
+    height: 100%;
+  }
+
+  // .book-description p {
+  //   overflow-y: scroll;
+  // }
+  .book-description {
+    overflow-y: scroll;
+  }
+
+  .escape-link {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-size: 3rem;
+    text-decoration: none;
+    color: indianred;
+  }
+}
