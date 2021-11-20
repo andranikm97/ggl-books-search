@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { buildRequestString } from '../apiRequest';
 import { useBooksStore } from '../contexts/BooksContext';
+import { Link } from 'react-router-dom';
 import '../styles/search.css';
 
 const Search = (props) => {
@@ -49,9 +50,11 @@ const Search = (props) => {
           type='text'
           placeholder='Enter book name, author, category or etc.'
         />
-        <button className='search-button' onClick={handleSearch}>
-          Search
-        </button>
+        <Link to='/'>
+          <button className='search-button' onClick={handleSearch}>
+            Search
+          </button>
+        </Link>
       </div>
       <div className='search-options'>
         <div>
