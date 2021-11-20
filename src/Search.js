@@ -5,7 +5,7 @@ const Search = (props) => {
   const initialState = {
     query: '',
     category: 'all',
-    sort: 'newest',
+    order: 'newest',
     isButtonDisabled: true,
   };
 
@@ -20,7 +20,7 @@ const Search = (props) => {
   };
 
   const handleSearch = () => {
-    if (query && category && sort) {
+    if (query && category && order) {
       try {
         props.submitSearch(state);
       } catch {
@@ -31,7 +31,7 @@ const Search = (props) => {
     }
   };
 
-  const { query, category, sort } = state;
+  const { query, category, order } = state;
 
   return (
     <div className='search-container'>
@@ -64,7 +64,7 @@ const Search = (props) => {
 
         <div>
           <h3> Sort by </h3>
-          <select name='sort' value={sort} onChange={handleChange}>
+          <select name='order' value={order} onChange={handleChange}>
             <option value='newest'>Newest</option>
             <option value='relevance'>Relevance</option>
           </select>
