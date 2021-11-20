@@ -25,7 +25,11 @@ const Book = ({ book }) => {
     <Link to={`/details/${book.id}`} className='book'>
       <div className='book-container'>
         <div className='image-container'>
-          <img className='book-cover' src={images.thumbnail} alt='' />
+          <img
+            className='book-cover'
+            src={images ? images.thumbnail : ''}
+            alt=''
+          />
         </div>
         <div className='info-container'>
           <h3 className='book-category'>{categories}</h3>

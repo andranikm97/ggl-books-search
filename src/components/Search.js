@@ -17,6 +17,7 @@ const Search = (props) => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
+    // booksStore.clearBooks();
     setState((previousState) => ({
       ...previousState,
       [name]: value,
