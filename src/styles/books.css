@@ -1,0 +1,15 @@
+.books-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: row wrap;
+
+  justify-content: space-evenly;
+  overflow: scroll;
+  position: relative;
+}
+
+.books-container span {
+  position: absolute;
+  left: 50px;
+}

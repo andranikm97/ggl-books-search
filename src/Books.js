@@ -1,5 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Book from './Book';
-const Books = () => {};
+import './styles/books.css';
+const Books = ({ books, totalFound }) => {
+  return (
+    <div className='books-container'>
+      <span> {`Found ${totalFound} results`}</span>
+      {!!books.length &&
+        books.map((book) => {
+          return (
+            <div>
+              <Book key={book.id} book={book} />
+            </div>
+          );
+        })}
+    </div>
+  );
+};
 
 export default Books;
