@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { buildRequestString } from '../apiRequest';
+import { useBooksStore } from '../stores/BooksContext';
 import '../styles/search.css';
 
 const Search = (props) => {
@@ -10,6 +12,7 @@ const Search = (props) => {
   };
 
   const [state, setState] = useState(initialState);
+  const booksStore = useBooksStore();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -25,6 +28,8 @@ const Search = (props) => {
         props.submitSearch(state);
       } catch {
         setState(initialState);
+      } finally {
+        booksStore.setCurrentQuery(buildRequestString(state));
       }
     } else {
       alert('Please enter a query!');

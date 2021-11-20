@@ -1,18 +1,23 @@
+import { toJS } from 'mobx';
 import React, { useState } from 'react';
 import './styles/App.css';
+import { getBooks } from './apiWorker';
 import Search from './components/Search';
 import Books from './components/Books';
 import Loader from './components/Loader';
-import { getBooks } from './apiWorker';
+import { useBooksStore } from './stores/BooksContext';
+import { useObserver } from 'mobx-react-lite';
 
 function App() {
   // const [loading, setFalse] = useState(false);
   const [request, setRequest] = useState(false);
-  const [books, setBooks] = useState({
-    results: [],
-    totalFound: 0,
-    page: 1,
-  });
+  // const [books, setBooks] = useState({
+  //   results: [],
+  //   totalFound: 0,
+  //   page: 1,
+  // });
+
+  const booksStore = useBooksStore();
   // const [total, setTotal] = useState(0);
 
   const submitSearch = (options) => {
@@ -20,30 +25,37 @@ function App() {
     return getBooks(options)
       .then((data) => {
         console.log(data);
-        setBooks({
-          results: data.items,
-          totalFound: data.totalItems,
-          page: books.page++,
-        });
+        // setBooks({
+        //   results: data.items,
+        //   totalFound: data.totalItems,
+        //   page: books.page++,
+        // });
+        const { items, totalItems } = data;
+        console.log(data);
+        booksStore.addBooks(items);
+        booksStore.setTotalFound(totalItems);
+        console.log(toJS(booksStore));
       })
       .then(() => setRequest(false));
   };
 
-  return (
+  return useObserver(() => (
     <div className='main-container'>
-      <Search submitSearch={submitSearch} page={books.page} />
+      <Search submitSearch={submitSearch} page={toJS(booksStore.page)} />
       <div className='data-container'>
-        {books.results.length !== 0 ? (
-          <Books books={books.results} totalFound={books.totalFound} />
+        {toJS(booksStore.books).length !== 0 ? (
+          <Books
+            books={toJS(booksStore.books)}
+            totalFound={toJS(booksStore.totalFound)}
+          />
         ) : request ? (
           <Loader />
         ) : (
           'Search for some books!'
         )}
       </div>
-      {/* {request ? <h1> Searching for some books! </h1> : 'not searching'} */}
     </div>
-  );
+  ));
 }
 
 export default App;
