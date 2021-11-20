@@ -7,9 +7,23 @@
   justify-content: space-evenly;
   overflow: scroll;
   position: relative;
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.books-container::-webkit-scrollbar {
+  display: none;
 }
 
 .books-container span {
   position: absolute;
   left: 50px;
+}
+
+.load-more-btn {
+  display: block;
+  align-self: flex-end;
+  justify-self: flex-end;
+  /* flex: 1; */
 }

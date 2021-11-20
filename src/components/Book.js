@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles/book.css';
+import '../styles/book.css';
 const Book = ({ book }) => {
   let { title, authors, categories, imageLinks: images } = book.volumeInfo;
   return (

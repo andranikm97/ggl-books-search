@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import './styles/App.css';
-import Search from './Search';
-import Books from './Books';
-import Loader from './Loader';
+import Search from './components/Search';
+import Books from './components/Books';
+import Loader from './components/Loader';
 import { getBooks } from './apiWorker';
 
 function App() {
@@ -11,6 +11,7 @@ function App() {
   const [books, setBooks] = useState({
     results: [],
     totalFound: 0,
+    page: 1,
   });
   // const [total, setTotal] = useState(0);
 
@@ -19,17 +20,18 @@ function App() {
     return getBooks(options)
       .then((data) => {
         console.log(data);
-        // const { items } = data;
-        // const { total } = data.totalItems;
-        // setTotal();
-        setBooks({ results: data.items, totalFound: data.totalItems });
+        setBooks({
+          results: data.items,
+          totalFound: data.totalItems,
+          page: books.page++,
+        });
       })
       .then(() => setRequest(false));
   };
 
   return (
     <div className='main-container'>
-      <Search submitSearch={submitSearch} />
+      <Search submitSearch={submitSearch} page={books.page} />
       <div className='data-container'>
         {books.results.length !== 0 ? (
           <Books books={books.results} totalFound={books.totalFound} />

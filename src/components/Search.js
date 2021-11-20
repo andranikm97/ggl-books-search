@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './styles/search.css';
+import '../styles/search.css';
 
 const Search = (props) => {
   const initialState = {
