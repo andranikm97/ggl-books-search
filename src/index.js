@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './styles/index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { BooksProvider } from './stores/BooksContext';
+import { BooksProvider } from './contexts/BooksContext';
 
 ReactDOM.render(
   <React.StrictMode>

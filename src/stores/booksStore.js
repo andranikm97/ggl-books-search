@@ -8,12 +8,19 @@ export function createBooksStore() {
     setCurrentQuery: function (string) {
       this.currentQuery = string;
     },
+    nextPage: function () {
+      this.page++;
+    },
     addBooks: function (newBooks) {
       newBooks.forEach((element) => {
         element._id = nanoid();
       });
 
-      this.books = newBooks;
+      if (this.page > 1) {
+        this.books.push(...newBooks);
+      } else {
+        this.books = newBooks;
+      }
     },
     setTotalFound: function (n) {
       this.totalFound = n;

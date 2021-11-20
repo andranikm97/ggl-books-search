@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { buildRequestString } from '../apiRequest';
-import { useBooksStore } from '../stores/BooksContext';
+import { useBooksStore } from '../contexts/BooksContext';
 import '../styles/search.css';
 
 const Search = (props) => {
@@ -25,7 +25,7 @@ const Search = (props) => {
   const handleSearch = () => {
     if (query && category && order) {
       try {
-        props.submitSearch(state);
+        props.submitSearch(state, state.queryExists);
       } catch {
         setState(initialState);
       } finally {

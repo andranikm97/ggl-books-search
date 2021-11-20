@@ -3,7 +3,7 @@ dotenv.config();
 const API_URI = 'https://www.googleapis.com/books/v1/volumes';
 const API_KEY = process.env.REACT_APP_API_KEY;
 
-export function buildRequestString(options) {
+export function buildRequestString(options, page) {
   const { query, category, order } = options;
   let url = API_URI;
   let queryParams = {
@@ -11,6 +11,7 @@ export function buildRequestString(options) {
     q: query.split(' ').join('+'),
     orderBy: order,
     maxResults: 30,
+    startWith: (page - 1) * 30,
   };
 
   if (category !== 'all') {
