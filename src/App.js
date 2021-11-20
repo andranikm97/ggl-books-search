@@ -16,6 +16,7 @@ function App() {
 
   const submitSearch = (options) => {
     setRequest(true);
+    booksStore.clearPage();
     return getBooks(options, 1)
       .then((data) => {
         console.log(data);
