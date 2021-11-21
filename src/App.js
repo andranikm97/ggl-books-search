@@ -28,14 +28,14 @@ function App() {
               </Route>
               <Route path='/'>
                 <div className='data-container'>
-                  {toJS(booksStore.books).length !== 0 ? (
+                  {booksStore.waitingOnRequest ? (
+                    <Loader />
+                  ) : toJS(booksStore.books).length !== 0 ? (
                     <Books
                       books={toJS(booksStore.books)}
                       totalFound={toJS(booksStore.totalFound)}
                       searchForMore={booksStore.searchForMore}
                     />
-                  ) : booksStore.waitingOnRequest ? (
-                    <Loader />
                   ) : (
                     <p>Search for books...</p>
                   )}

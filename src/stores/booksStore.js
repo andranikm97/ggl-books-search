@@ -39,8 +39,7 @@ export function createBooksStore() {
       this.currentQuery = string;
     },
     submitSearch: function (options) {
-      // setRequest(true);
-      this.requestOnOff();
+      this.requestOnOff(true);
       this.clearPage();
       return getBooks(options, 1)
         .then((data) => {
@@ -51,7 +50,7 @@ export function createBooksStore() {
           this.setTotalFound(totalItems);
           console.log(toJS(this));
         })
-        .then(() => this.requestOnOff());
+        .then(() => this.requestOnOff(false));
     },
     searchForMore: function () {
       return loadMoreBooks(toJS(this.currentQuery), toJS(this.page)).then(
@@ -65,8 +64,8 @@ export function createBooksStore() {
         },
       );
     },
-    requestOnOff: function () {
-      this.waitingOnRequest = !this.waitingOnRequest;
+    requestOnOff: function (input) {
+      this.waitingOnRequest = input;
     },
   };
 }
