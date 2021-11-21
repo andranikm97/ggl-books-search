@@ -10,10 +10,9 @@ const Books = ({ books, totalFound, searchForMore }) => {
         books.map((book) => {
           return <Book key={book._id} book={book} />;
         })}
-      <button className='load-more-btn' onClick={searchForMore}>
-        {' '}
-        Load more{' '}
-      </button>
+      <div className='load-more-btn'>
+        <button onClick={searchForMore}> Load more </button>
+      </div>
     </div>
   );
 };
