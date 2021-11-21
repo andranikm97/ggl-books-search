@@ -37,7 +37,7 @@ function App() {
                   ) : booksStore.waitingOnRequest ? (
                     <Loader />
                   ) : (
-                    'Search for some books!'
+                    <p>Search for books...</p>
                   )}
                 </div>
               </Route>

@@ -1,0 +1,22 @@
+.main-container {
+  height: 100vh;
+  display: flex;
+  flex-flow: column nowrap;
+
+  padding: 5px;
+  position: relative;
+
+  background-color: aqua;
+}
+
+.data-container {
+  height: 75%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+
+  p {
+    font-size: 50px;
+  }
+}
