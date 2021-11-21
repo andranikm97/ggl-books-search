@@ -53,7 +53,9 @@ const BookDetail = (props) => {
               alt={id}
             />
 
-            <p>Categories: {categories}</p>
+            <p>
+              Category: {Array.isArray(categories) ? categories[0] : categories}
+            </p>
           </div>
           <div className='info-container'>
             <h1 className='book-title'>{title}</h1>

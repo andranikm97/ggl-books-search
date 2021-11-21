@@ -32,7 +32,9 @@ const Book = ({ book }) => {
           />
         </div>
         <div className='info-container'>
-          <h3 className='book-category'>{categories}</h3>
+          <h3 className='book-category'>
+            {Array.isArray(categories) ? categories[0] : categories}
+          </h3>
           <h2 className='book-title'>{title}</h2>
           <h2 className='book-author'>{authors}</h2>
         </div>
