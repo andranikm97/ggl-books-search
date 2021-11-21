@@ -66,7 +66,7 @@ const BookDetail = (props) => {
             )}
           </div>
           <Link to='/' className='escape-link'>
-            x
+            <i class='far fa-times-circle'></i>
           </Link>
         </div>
       )}

@@ -1,3 +1,21 @@
+.loader-container {
+  height: 100%;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
 .book-detail-container {
   height: 95%;
   max-height: 95%;
@@ -42,12 +60,16 @@
   overflow-y: scroll;
 }
 
+.book-detail-container .book-description::-webkit-scrollbar {
+  display: none;
+}
+
 .book-detail-container .escape-link {
   position: absolute;
-  top: 5px;
-  right: 10px;
+  top: 15px;
+  right: 15px;
   font-size: 3rem;
   text-decoration: none;
-  color: indianred;
+  color: white;
 }
 /*# sourceMappingURL=bookDetails.css.map */
