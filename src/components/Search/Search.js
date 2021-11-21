@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { buildRequestString } from '../../apiRequest';
 import { useBooksStore } from '../../contexts/BooksContext';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import './search.css';
 
 const Search = ({ submitSearch, page }) => {
@@ -13,11 +13,12 @@ const Search = ({ submitSearch, page }) => {
 
   const [state, setState] = useState(initialState);
   const booksStore = useBooksStore();
+  let history = useHistory();
 
   useEffect(() => {
     const listener = (event) => {
       if (event.code === 'Enter' && checkFocus() === 'search') {
-        console.log(state);
+        history.push('/');
         handleSearch();
       }
     };
