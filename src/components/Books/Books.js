@@ -1,6 +1,6 @@
 import React from 'react';
-import Book from './Book';
-import '../styles/books.css';
+import Book from '../Book/Book';
+import './books.css';
 
 const Books = ({ books, totalFound, searchForMore }) => {
   return (

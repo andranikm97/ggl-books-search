@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { buildRequestString } from '../apiRequest';
-import { useBooksStore } from '../contexts/BooksContext';
+import { buildRequestString } from '../../apiRequest';
+import { useBooksStore } from '../../contexts/BooksContext';
 import { Link } from 'react-router-dom';
-import '../styles/search.css';
+import './search.css';
 
 const Search = (props) => {
   const initialState = {

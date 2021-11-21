@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import './book.css';
 
-import '../styles/book.css';
 const Book = ({ book }) => {
   let { title, authors, categories, imageLinks: images } = book.volumeInfo;
 
@@ -24,7 +24,7 @@ const Book = ({ book }) => {
               : ''}
           </h3>
           <h2 className='book-title'>{title ? title : ''}</h2>
-          <h2 className='book-author'>{authors ? title : ''}</h2>
+          <h2 className='book-author'>{authors ? authors : ''}</h2>
         </div>
       </div>
     </Link>
