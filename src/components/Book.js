@@ -4,22 +4,6 @@ import { Link } from 'react-router-dom';
 import '../styles/book.css';
 const Book = ({ book }) => {
   let { title, authors, categories, imageLinks: images } = book.volumeInfo;
-  // const [imageURL, setImageURL] = useState('');
-  // useEffect(() => {
-  //   return fetch(
-  //     'https://www.googleapis.com/books/v1/volumes/' + book.id.trim(),
-  //   )
-  //     .then((data) => data.json())
-  //     .then((data) => {
-  //       try {
-  //         const bookImages = data.volumeInfo.imageLinks;
-  //         setImageURL(images.thumbnail);
-  //       } catch (e) {
-  //         console.log(e);
-  //         setImageURL(images.thumbnail);
-  //       }
-  //     });
-  // }, [book.id]);
 
   return (
     <Link to={`/details/${book.id}`} className='book'>
@@ -33,10 +17,14 @@ const Book = ({ book }) => {
         </div>
         <div className='info-container'>
           <h3 className='book-category'>
-            {Array.isArray(categories) ? categories[0] : categories}
+            {categories
+              ? Array.isArray(categories)
+                ? categories[0]
+                : categories
+              : ''}
           </h3>
-          <h2 className='book-title'>{title}</h2>
-          <h2 className='book-author'>{authors}</h2>
+          <h2 className='book-title'>{title ? title : ''}</h2>
+          <h2 className='book-author'>{authors ? title : ''}</h2>
         </div>
       </div>
     </Link>

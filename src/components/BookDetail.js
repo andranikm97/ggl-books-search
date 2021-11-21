@@ -54,15 +54,22 @@ const BookDetail = (props) => {
             />
 
             <p>
-              Category: {Array.isArray(categories) ? categories[0] : categories}
+              Category:{' '}
+              {categories
+                ? Array.isArray(categories)
+                  ? categories[0]
+                  : categories
+                : ''}
             </p>
           </div>
           <div className='info-container'>
-            <h1 className='book-title'>{title}</h1>
-            <h2 className='book-authors'>By {authors}</h2>
+            <h1 className='book-title'>{title ? title : ''}</h1>
+            <h2 className='book-authors'>By {authors ? authors : ''}</h2>
             <div
               className='book-description'
-              dangerouslySetInnerHTML={{ __html: description }}></div>
+              dangerouslySetInnerHTML={{
+                __html: description ? description : '',
+              }}></div>
           </div>
           <Link to='/' className='escape-link'>
             x
