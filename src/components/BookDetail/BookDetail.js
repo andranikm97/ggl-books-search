@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import Loader from '../Loader/Loader';
 import './bookDetails.css';
+import parse from 'html-react-parser';
 
 const BookDetail = (props) => {
   const [bookDetails, setBookDetails] = useState({});
@@ -41,7 +42,7 @@ const BookDetail = (props) => {
   return (
     <div>
       {isLoading ? (
-        <div>
+        <div className='loader-container'>
           <Loader />
         </div>
       ) : (
@@ -59,11 +60,7 @@ const BookDetail = (props) => {
             {title ? <h1 className='book-title'>{title}</h1> : ''}
             {authors ? <h2 className='book-authors'>By {authors} </h2> : ''}
             {description ? (
-              <div
-                className='book-description'
-                dangerouslySetInnerHTML={{
-                  __html: description,
-                }}></div>
+              <div className='book-description'>{parse(description)}</div>
             ) : (
               ''
             )}
