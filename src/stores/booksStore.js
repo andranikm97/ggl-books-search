@@ -1,21 +1,16 @@
 import { nanoid } from 'nanoid';
+import { getBooks, loadMoreBooks } from '../apiWorker';
+import { toJS } from 'mobx';
+
 export function createBooksStore() {
   return {
     books: [],
     totalFound: 0,
     page: 1,
     currentQuery: '',
-    setCurrentQuery: function (string) {
-      this.currentQuery = string;
-    },
-    nextPage: function () {
-      this.page++;
-    },
-    clearPage: function () {
-      this.page = 1;
-    },
-    clearBooks: function () {
-      this.books = [];
+    waitingOnRequest: false,
+    getBooks: function () {
+      return this.books;
     },
     addBooks: function (newBooks) {
       newBooks.forEach((element) => {
@@ -28,11 +23,50 @@ export function createBooksStore() {
         this.books = newBooks;
       }
     },
+    clearBooks: function () {
+      this.books = [];
+    },
     setTotalFound: function (n) {
       this.totalFound = n;
     },
-    getBooks: function () {
-      return this.books;
+    nextPage: function () {
+      this.page++;
+    },
+    clearPage: function () {
+      this.page = 1;
+    },
+    setCurrentQuery: function (string) {
+      this.currentQuery = string;
+    },
+    submitSearch: function (options) {
+      // setRequest(true);
+      this.requestOnOff();
+      this.clearPage();
+      return getBooks(options, 1)
+        .then((data) => {
+          console.log(data);
+          const { items, totalItems } = data;
+          this.addBooks(items);
+          this.nextPage();
+          this.setTotalFound(totalItems);
+          console.log(toJS(this));
+        })
+        .then(() => this.requestOnOff());
+    },
+    searchForMore: function () {
+      return loadMoreBooks(toJS(this.currentQuery), toJS(this.page)).then(
+        (data) => {
+          console.log(data);
+          const { items } = data;
+          this.addBooks(items);
+          this.nextPage();
+
+          console.log(toJS(this));
+        },
+      );
+    },
+    requestOnOff: function () {
+      this.waitingOnRequest = !this.waitingOnRequest;
     },
   };
 }

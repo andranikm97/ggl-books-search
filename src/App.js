@@ -14,41 +14,44 @@ function App() {
   const [request, setRequest] = useState(false);
   const booksStore = useBooksStore();
 
-  const submitSearch = (options) => {
-    setRequest(true);
-    booksStore.clearPage();
-    return getBooks(options, 1)
-      .then((data) => {
-        console.log(data);
-        const { items, totalItems } = data;
-        booksStore.addBooks(items);
-        booksStore.nextPage();
-        booksStore.setTotalFound(totalItems);
-        console.log(toJS(booksStore));
-      })
-      .then(() => setRequest(false));
-  };
+  // const submitSearch = (options) => {
+  //   setRequest(true);
+  //   booksStore.clearPage();
+  //   return getBooks(options, 1)
+  //     .then((data) => {
+  //       console.log(data);
+  //       const { items, totalItems } = data;
+  //       booksStore.addBooks(items);
+  //       booksStore.nextPage();
+  //       booksStore.setTotalFound(totalItems);
+  //       console.log(toJS(booksStore));
+  //     })
+  //     .then(() => setRequest(false));
+  // };
 
-  const searchForMore = () => {
-    return loadMoreBooks(
-      toJS(booksStore.currentQuery),
-      toJS(booksStore.page),
-    ).then((data) => {
-      console.log(data);
-      const { items } = data;
-      booksStore.addBooks(items);
-      booksStore.nextPage();
+  // const searchForMore = () => {
+  //   return loadMoreBooks(
+  //     toJS(booksStore.currentQuery),
+  //     toJS(booksStore.page),
+  //   ).then((data) => {
+  //     console.log(data);
+  //     const { items } = data;
+  //     booksStore.addBooks(items);
+  //     booksStore.nextPage();
 
-      console.log(toJS(booksStore));
-    });
-  };
+  //     console.log(toJS(booksStore));
+  //   });
+  // };
 
   return (
     <Observer>
       {() => (
         <div className='main-container'>
           <Router>
-            <Search submitSearch={submitSearch} page={toJS(booksStore.page)} />
+            <Search
+              submitSearch={booksStore.submitSearch}
+              page={toJS(booksStore.page)}
+            />
             <Switch>
               <Route path='/details/:id'>
                 <BookDetail />
@@ -59,9 +62,9 @@ function App() {
                     <Books
                       books={toJS(booksStore.books)}
                       totalFound={toJS(booksStore.totalFound)}
-                      searchForMore={searchForMore}
+                      searchForMore={booksStore.searchForMore}
                     />
-                  ) : request ? (
+                  ) : booksStore.waitingOnRequest ? (
                     <Loader />
                   ) : (
                     'Search for some books!'
