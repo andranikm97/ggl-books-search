@@ -17,12 +17,16 @@ const Search = ({ submitSearch, page }) => {
   useEffect(() => {
     const listener = (event) => {
       if (event.code === 'Enter' && checkFocus() === 'search') {
+        console.log(state);
         handleSearch();
       }
     };
 
     document.addEventListener('keydown', listener);
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    return () => {
+      document.removeEventListener('keydown', listener);
+    };
+  }, [state]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const checkFocus = () => {
     return document.activeElement.id;
