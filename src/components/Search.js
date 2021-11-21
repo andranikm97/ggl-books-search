@@ -9,7 +9,6 @@ const Search = (props) => {
     query: '',
     category: 'all',
     order: 'newest',
-    isButtonDisabled: true,
   };
 
   const [state, setState] = useState(initialState);
@@ -52,7 +51,10 @@ const Search = (props) => {
           placeholder='Enter book name, author, category or etc.'
         />
         <Link to='/'>
-          <button className='search-button' onClick={handleSearch}>
+          <button
+            disabled={state.query.trim() === ''}
+            className='search-button'
+            onClick={handleSearch}>
             Search
           </button>
         </Link>
