@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { buildRequestString } from '../../apiRequest';
 import { useBooksStore } from '../../contexts/BooksContext';
 import { Link } from 'react-router-dom';
 import './search.css';
 
-const Search = (props) => {
+const Search = ({ submitSearch, page }) => {
   const initialState = {
     query: '',
     category: 'all',
@@ -14,9 +14,22 @@ const Search = (props) => {
   const [state, setState] = useState(initialState);
   const booksStore = useBooksStore();
 
+  useEffect(() => {
+    const listener = (event) => {
+      if (event.code === 'Enter' && checkFocus() === 'search') {
+        handleSearch();
+      }
+    };
+
+    document.addEventListener('keydown', listener);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const checkFocus = () => {
+    return document.activeElement.id;
+  };
+
   const handleChange = (event) => {
     const { name, value } = event.target;
-    // booksStore.clearBooks();
     setState((previousState) => ({
       ...previousState,
       [name]: value,
@@ -26,7 +39,7 @@ const Search = (props) => {
   const handleSearch = () => {
     if (query && category && order) {
       try {
-        props.submitSearch(state, state.queryExists);
+        submitSearch(state, state.queryExists);
       } catch {
         setState(initialState);
       } finally {
@@ -43,6 +56,7 @@ const Search = (props) => {
     <div className='search-container'>
       <div className='search-field'>
         <input
+          id='search'
           name='query'
           className='search-input'
           value={query}
