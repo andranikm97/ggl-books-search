@@ -55,6 +55,7 @@ const Search = ({ submitSearch, page }) => {
     }
   };
 
+  // booksStore.invalidSearch && setState(initialState);
   const { query, category, order } = state;
 
   return (

@@ -9,6 +9,7 @@ export function createBooksStore() {
     page: 1,
     currentQuery: '',
     waitingOnRequest: false,
+    invalidSearch: false,
     getBooks: function () {
       return this.books;
     },
@@ -43,7 +44,6 @@ export function createBooksStore() {
       this.clearPage();
       return getBooks(options, 1)
         .then((data) => {
-          console.log(data);
           const { items, totalItems } = data;
 
           if (totalItems === 0) {
@@ -53,9 +53,13 @@ export function createBooksStore() {
           this.addBooks(items);
           this.nextPage();
           this.setTotalFound(totalItems);
-          console.log(toJS(this));
         })
         .catch((error) => {
+          this.books = [];
+          this.invalidSearch = true;
+          setTimeout(() => {
+            this.invalidSearch = false;
+          }, 3000);
           console.log(error);
         })
         .then(() => this.requestOnOff(false));

@@ -37,8 +37,13 @@ function App() {
                       totalFound={toJS(booksStore.totalFound)}
                       searchForMore={booksStore.searchForMore}
                     />
+                  ) : booksStore.invalidSearch ? (
+                    <p className='invalid-search-message'>
+                      {' '}
+                      Invalid search! Please enter a valid query{' '}
+                    </p>
                   ) : (
-                    <p className='no-books-message'>
+                    <p className='no-books-message '>
                       Enter a query and hit <i className='fa fa-search' /> or
                       'Enter'
                     </p>
