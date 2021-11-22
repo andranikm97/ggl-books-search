@@ -1,14 +1,13 @@
 import { toJS } from 'mobx';
-import React, { useState } from 'react';
+import React from 'react';
 import './styles/App.css';
-import { getBooks, loadMoreBooks } from './apiWorker';
 import Search from './components/Search/Search';
 import Books from './components/Books/Books';
 import Loader from './components/Loader/Loader';
 import BookDetail from './components/BookDetail/BookDetail';
 import { useBooksStore } from './contexts/BooksContext';
 import { Observer } from 'mobx-react-lite';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 function App() {
   const booksStore = useBooksStore();

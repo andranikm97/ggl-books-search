@@ -10,12 +10,10 @@ const BookDetail = (props) => {
 
   const googleURI = 'https://www.googleapis.com/books/v1/volumes/';
   const { id } = useParams();
-  console.log(id);
   useEffect(() => {
     return fetch(googleURI + id)
       .then((data) => data.json())
       .then((info) => {
-        console.log(info);
         const {
           title,
           authors,
@@ -35,7 +33,7 @@ const BookDetail = (props) => {
       })
       .catch((err) => console.log(err))
       .finally(() => setIsLoading(false));
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const { title, authors, categories, imageLinks, description } = bookDetails;
   return (
@@ -65,7 +63,7 @@ const BookDetail = (props) => {
             )}
           </div>
           <Link to='/' className='escape-link'>
-            <i class='far fa-times-circle'></i>
+            <i className='far fa-times-circle'></i>
           </Link>
         </div>
       )}
