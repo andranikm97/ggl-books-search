@@ -74,7 +74,7 @@ const Search = ({ submitSearch, page }) => {
             disabled={state.query.trim() === ''}
             className='search-button'
             onClick={handleSearch}>
-            Search
+            <i className='fa fa-search' />
           </button>
         </Link>
       </div>

@@ -1,7 +1,6 @@
 .search-container {
-  width: 50%;
+  width: 75%;
   height: 20%;
-  background-color: aliceblue;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -40,8 +39,12 @@
   -webkit-box-flex: 3;
       -ms-flex: 3;
           flex: 3;
-  height: 65%;
+  height: 30px;
   font-size: 20px;
+  font-family: 'Nunito', sans-serif;
+  border-style: none;
+  border-radius: 5px;
+  border-color: white;
 }
 
 .search-field button {
@@ -49,6 +52,17 @@
       -ms-flex: 1;
           flex: 1;
   font-size: 25px;
+  background: none;
+  border: none;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+.search-field button:hover:enabled {
+  cursor: pointer;
+  opacity: 0.75;
+  -webkit-transform: scale(1.25);
+          transform: scale(1.25);
 }
 
 .search-options {
@@ -66,6 +80,31 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.search-options .option {
+  margin-top: 5px;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 50%;
+          flex: 0 0 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.search-options .option select {
+  height: 50%;
+  font-family: 'Nunito', sans-serif;
 }
 
 @media screen and (max-width: 500px) {
