@@ -45,10 +45,18 @@ export function createBooksStore() {
         .then((data) => {
           console.log(data);
           const { items, totalItems } = data;
+
+          if (totalItems === 0) {
+            throw new Error('No matches found.');
+          }
+
           this.addBooks(items);
           this.nextPage();
           this.setTotalFound(totalItems);
           console.log(toJS(this));
+        })
+        .catch((error) => {
+          console.log(error);
         })
         .then(() => this.requestOnOff(false));
     },
