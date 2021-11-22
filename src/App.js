@@ -24,7 +24,9 @@ function App() {
             />
             <Switch>
               <Route path='/details/:id'>
-                <BookDetail />
+                <div className='data-container'>
+                  <BookDetail />
+                </div>
               </Route>
               <Route path='/'>
                 <div className='data-container'>
@@ -37,12 +39,16 @@ function App() {
                       searchForMore={booksStore.searchForMore}
                     />
                   ) : (
-                    <p>Search for books...</p>
+                    <p className='no-books-message'>
+                      Enter a query and hit <i className='fa fa-search' /> or
+                      'Enter'
+                    </p>
                   )}
                 </div>
               </Route>
             </Switch>
           </Router>
+          <footer className='footer'></footer>
         </div>
       )}
     </Observer>

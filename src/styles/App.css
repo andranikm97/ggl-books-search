@@ -15,7 +15,8 @@
 }
 
 .main-container .data-container {
-  height: 70%;
+  height: 80%;
+  width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -28,15 +29,28 @@
   padding: 15px;
 }
 
-.main-container .data-container p {
+.main-container .data-container .no-books-message {
   font-size: 75px;
   color: white;
-  background-color: aqua;
+  background-color: #b8b5ff;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.main-container .footer {
+  height: 5%;
+  width: 100%;
 }
 
 @media screen and (max-width: 500px) {
   .main-container {
     padding: 10px;
+  }
+  .main-container .data-container {
+    padding: 5px 15px;
+  }
+  .main-container .data-container .no-books-message {
+    font-size: 30px;
   }
 }
 /*# sourceMappingURL=App.css.map */

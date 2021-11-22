@@ -37,10 +37,9 @@ const BookDetail = (props) => {
       .finally(() => setIsLoading(false));
   }, []);
 
-  const { title, authors, categories, imageLinks, description, subtitle } =
-    bookDetails;
+  const { title, authors, categories, imageLinks, description } = bookDetails;
   return (
-    <div>
+    <div style={{ height: 100 + '%' }}>
       {isLoading ? (
         <div className='loader-container'>
           <Loader />
@@ -54,7 +53,7 @@ const BookDetail = (props) => {
               alt={id}
             />
 
-            <p>Categories: {categories ? categories : ''}</p>
+            <p>Categories: {categories ? categories.join(' , ') : ''}</p>
           </div>
           <div className='info-container'>
             {title ? <h1 className='book-title'>{title}</h1> : ''}

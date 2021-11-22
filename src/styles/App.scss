@@ -7,22 +7,36 @@
   position: relative;
 
   .data-container {
-    height: 70%;
+    height: 80%;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 15px;
 
-    p {
+    .no-books-message {
       font-size: 75px;
       color: white;
-      background-color: aqua;
+      background-color: #b8b5ff;
+      border-radius: 10px;
+      padding: 5px;
     }
+  }
+  .footer {
+    height: 5%;
+    width: 100%;
   }
 }
 
 @media screen and (max-width: 500px) {
   .main-container {
     padding: 10px;
+
+    .data-container {
+      padding: 5px 15px;
+      .no-books-message {
+        font-size: 30px;
+      }
+    }
   }
 }
