@@ -1,23 +1,23 @@
 .main-container {
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
   padding: 30px;
   position: relative;
 
-  background-image: url('../GettyImages-577674005.jpeg');
-}
+  .data-container {
+    height: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
 
-.data-container {
-  height: 70%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 15px;
-
-  p {
-    font-size: 50px;
+    p {
+      font-size: 75px;
+      color: white;
+      background-color: aqua;
+    }
   }
 }
 

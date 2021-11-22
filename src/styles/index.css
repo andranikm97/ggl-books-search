@@ -2,7 +2,15 @@ html,
 body {
   overflow: hidden;
   height: 100%;
+  width: 100%;
   padding: 0;
   margin: 0;
   font-family: 'Nunito', sans-serif;
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+  /* background-image: url('../GettyImages-577674005.jpeg'); */
+  background: linear-gradient(#c8c6c6, #f7f6f2);
 }

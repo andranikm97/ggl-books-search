@@ -1,5 +1,5 @@
 .main-container {
-  height: 100vh;
+  height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -12,10 +12,9 @@
           align-items: center;
   padding: 30px;
   position: relative;
-  background-image: url("../GettyImages-577674005.jpeg");
 }
 
-.data-container {
+.main-container .data-container {
   height: 70%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -29,8 +28,10 @@
   padding: 15px;
 }
 
-.data-container p {
-  font-size: 50px;
+.main-container .data-container p {
+  font-size: 75px;
+  color: white;
+  background-color: aqua;
 }
 
 @media screen and (max-width: 500px) {
