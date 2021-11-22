@@ -17,7 +17,7 @@
       -ms-flex-align: center;
           align-items: center;
   width: 30rem;
-  margin: 50px 10px;
+  margin: 15px 10px;
   padding: 5px;
   border-radius: 10px;
   background-color: #f0e9d2;
@@ -37,7 +37,7 @@
           flex: 1;
 }
 
-.book-container .image-container .book-cover {
+.book-container .image-container img {
   height: 300px;
   max-width: 200px;
 }
@@ -48,12 +48,25 @@
           flex: 1;
 }
 
-@media screen and (max-width: 450px) {
+.book-container .info-container * {
+  width: 100%;
+}
+
+.book-container .info-container .book-author {
+  text-overflow: ellipsis;
+}
+
+@media screen and (max-width: 500px) {
   .book-container {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
+    padding: 25px;
+    width: 75%;
+  }
+  .book-container:hover {
+    cursor: pointer;
   }
 }
 /*# sourceMappingURL=book.css.map */

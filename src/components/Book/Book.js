@@ -9,11 +9,7 @@ const Book = ({ book }) => {
     <Link to={`/details/${book.id}`} className='book'>
       <div className='book-container'>
         <div className='image-container'>
-          <img
-            className='book-cover'
-            src={images ? images.thumbnail : ''}
-            alt=''
-          />
+          <img src={images ? images.thumbnail : ''} alt='' />
         </div>
         <div className='info-container'>
           <h3 className='book-category'>
@@ -24,7 +20,7 @@ const Book = ({ book }) => {
               : ''}
           </h3>
           <h2 className='book-title'>{title ? title : ''}</h2>
-          <h2 className='book-author'>{authors ? authors : ''}</h2>
+          {authors ? <div className='book-author'> By {authors}</div> : ''}
         </div>
       </div>
     </Link>

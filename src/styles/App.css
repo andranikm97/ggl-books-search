@@ -7,13 +7,16 @@
   -webkit-box-direction: normal;
       -ms-flex-flow: column nowrap;
           flex-flow: column nowrap;
-  padding: 5px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 30px;
   position: relative;
-  background-color: aqua;
+  background-image: url("../GettyImages-577674005.jpeg");
 }
 
 .data-container {
-  height: 75%;
+  height: 70%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -28,5 +31,11 @@
 
 .data-container p {
   font-size: 50px;
+}
+
+@media screen and (max-width: 500px) {
+  .main-container {
+    padding: 10px;
+  }
 }
 /*# sourceMappingURL=App.css.map */

@@ -79,7 +79,7 @@ const Search = ({ submitSearch, page }) => {
         </Link>
       </div>
       <div className='search-options'>
-        <div>
+        <div className='option'>
           <h3> Category </h3>
           <select name='category' value={category} onChange={handleChange}>
             <option value='all'>All categories</option>
@@ -92,7 +92,7 @@ const Search = ({ submitSearch, page }) => {
           </select>
         </div>
 
-        <div>
+        <div className='option'>
           <h3> Sort by </h3>
           <select name='order' value={order} onChange={handleChange}>
             <option value='newest'>Newest</option>

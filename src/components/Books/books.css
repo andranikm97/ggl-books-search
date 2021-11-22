@@ -62,8 +62,9 @@
 }
 
 .results-container .books-container .load-more-btn button {
-  width: 50%;
-  font-size: 50px;
+  width: 75%;
+  font-size: 25px;
+  border-radius: 10px;
 }
 
 .results-container .books-container .load-more-btn button:hover {
