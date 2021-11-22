@@ -17,6 +17,7 @@
       -ms-flex-align: center;
           align-items: center;
   width: 30rem;
+  height: 18rem;
   margin: 15px 10px;
   padding: 5px;
   border-radius: 10px;
@@ -44,6 +45,7 @@
 }
 
 .book-container .info-container {
+  margin-left: 5px;
   -webkit-box-flex: 0;
       -ms-flex: 0 0 1;
           flex: 0 0 1;
@@ -68,6 +70,9 @@
             flex-direction: column;
     padding: 25px;
     width: 75%;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
   }
   .book-container:hover {
     cursor: pointer;

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './book.css';
+import noImage from '../../noImageFallback.jpeg';
 
 const Book = ({ book }) => {
   let { title, authors, categories, imageLinks: images } = book.volumeInfo;
@@ -9,7 +10,7 @@ const Book = ({ book }) => {
     <Link to={`/details/${book.id}`} className='book'>
       <div className='book-container'>
         <div className='image-container'>
-          <img src={images ? images.thumbnail : ''} alt='' />
+          <img src={images ? images.thumbnail : noImage} alt='' />
         </div>
         <div className='info-container'>
           <h3 className='book-category'>
