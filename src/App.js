@@ -9,7 +9,7 @@ import { useBooksStore } from './contexts/BooksContext';
 import { Observer } from 'mobx-react-lite';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-function App() {
+const App = () => {
   const booksStore = useBooksStore();
 
   return (
@@ -57,6 +57,6 @@ function App() {
       )}
     </Observer>
   );
-}
+};
 
 export default App;
