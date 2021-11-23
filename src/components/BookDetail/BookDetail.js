@@ -4,15 +4,23 @@ import Loader from '../Loader/Loader';
 import './bookDetails.css';
 import parse from 'html-react-parser';
 
-const BookDetail = (props) => {
+const BookDetail = () => {
   const [bookDetails, setBookDetails] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const [entryDNE, setEntryDNE] = useState(false);
 
   const googleURI = 'https://www.googleapis.com/books/v1/volumes/';
   const { id } = useParams();
   useEffect(() => {
     return fetch(googleURI + id)
-      .then((data) => data.json())
+      .then((data) => {
+        if (data.status > 400) {
+          let dataDNE = new Error('entry does not exist', 'DNE');
+          throw dataDNE;
+        } else {
+          return data.json();
+        }
+      })
       .then((info) => {
         const {
           title,
@@ -22,6 +30,7 @@ const BookDetail = (props) => {
           description,
           subtitle,
         } = info.volumeInfo;
+
         setBookDetails({
           title,
           authors,
@@ -31,7 +40,11 @@ const BookDetail = (props) => {
           subtitle,
         });
       })
-      .catch((err) => console.log(err))
+      .catch((err) => {
+        if (err.message === 'entry does not exist') {
+          setEntryDNE(true);
+        }
+      })
       .finally(() => setIsLoading(false));
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -42,6 +55,17 @@ const BookDetail = (props) => {
       {isLoading ? (
         <div className='loader-container'>
           <Loader />
+        </div>
+      ) : entryDNE ? (
+        <div className='error-container'>
+          <Link to='/' className='escape-link'>
+            <div
+              onClick={() => {
+                setEntryDNE(false);
+              }}>
+              Click on this box to return to main page
+            </div>
+          </Link>
         </div>
       ) : (
         <div className='book-detail-container'>
