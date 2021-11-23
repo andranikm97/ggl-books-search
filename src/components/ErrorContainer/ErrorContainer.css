@@ -40,14 +40,43 @@
   cursor: default;
 }
 
-.clickable div {
+.click div {
   -webkit-transition: all 0.25s ease-in-out;
   transition: all 0.25s ease-in-out;
 }
 
-.clickable div:hover {
+.click div:hover {
   opacity: 0.75;
   cursor: pointer;
+}
+
+.no-click {
+  -webkit-animation: inNout 3.2s;
+          animation: inNout 3.2s;
+}
+
+@-webkit-keyframes inNout {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes inNout {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 @media screen and (max-width: 500px) {

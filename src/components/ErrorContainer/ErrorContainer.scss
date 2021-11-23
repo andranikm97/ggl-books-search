@@ -36,7 +36,7 @@
   }
 }
 
-.clickable {
+.click {
   div {
     transition: all 0.25s ease-in-out;
 
@@ -44,6 +44,22 @@
       opacity: 0.75;
       cursor: pointer;
     }
+  }
+}
+
+.no-click {
+  animation: inNout 3.2s;
+}
+
+@keyframes inNout {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }
 

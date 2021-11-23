@@ -1,15 +1,16 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import './ErrorContainer.css';
+import React from "react";
+import { Link } from "react-router-dom";
+import "./ErrorContainer.css";
 
 const ErrorContainer = ({ message, withRedirect, click }) => {
   return (
     <div
       className={
-        withRedirect ? 'error-container clickable' : 'error-container'
-      }>
+        withRedirect ? "error-container click" : "error-container no-click"
+      }
+    >
       {withRedirect ? (
-        <Link to='/'>
+        <Link to="/">
           <div onClick={click}>{message}</div>
         </Link>
       ) : (
