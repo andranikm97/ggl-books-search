@@ -49,7 +49,7 @@ const BookDetail = () => {
         }
       })
       .finally(() => setIsLoading(false));
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, []);
 
   const { title, authors, categories, imageLinks, description } = bookDetails;
   return (
