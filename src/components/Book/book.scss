@@ -39,6 +39,10 @@
     * {
       width: 100%;
     }
+    .book-title {
+      font-style: italic;
+    }
+
     .book-author {
       text-overflow: ellipsis;
     }
@@ -61,6 +65,7 @@
     }
 
     .info-container {
+      align-self: flex-start;
       font-size: 75%;
     }
   }
