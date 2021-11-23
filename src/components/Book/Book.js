@@ -5,13 +5,15 @@ import noImage from "../../noImageFallback.jpeg";
 
 const Book = ({ book }) => {
   const [contentReceived, setContentReceived] = useState(true);
-  const [details, setDetails] = useState({
+  const initialState = {
     title: "",
     id: "",
     authors: [],
     categories: [],
     images: {},
-  });
+  };
+
+  const [details, setDetails] = useState(initialState);
 
   useEffect(() => {
     try {
@@ -28,12 +30,12 @@ const Book = ({ book }) => {
         });
       } else {
         let {
-          id,
           title,
           authors,
           categories,
           imageLinks: images,
         } = book.volumeInfo;
+        let { id } = book;
         setDetails({ id, title, authors, categories, images });
       }
     } catch (e) {
