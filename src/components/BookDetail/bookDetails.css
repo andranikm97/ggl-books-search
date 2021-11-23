@@ -52,9 +52,11 @@
   -webkit-box-direction: normal;
       -ms-flex-flow: column nowrap;
           flex-flow: column nowrap;
+  width: 100%;
 }
 
 .book-detail-container .image-container img {
+  border-radius: 3px;
   width: 95%;
 }
 
@@ -71,10 +73,12 @@
 
 .book-detail-container .info-container .book-title {
   height: 5%;
+  font-style: italic;
 }
 
 .book-detail-container .info-container .book-authors {
   height: 5%;
+  font-weight: 100;
 }
 
 .book-detail-container .info-container .book-description {
@@ -101,7 +105,7 @@
   opacity: 0.75;
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 550px) {
   .book-detail-container {
     font-size: 10px;
     padding-right: 20px;
@@ -114,9 +118,6 @@
             flex-flow: column nowrap;
   }
   .book-detail-container .image-container {
-    -webkit-box-flex: 1;
-        -ms-flex: 1;
-            flex: 1;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -131,20 +132,17 @@
         -ms-flex-align: center;
             align-items: center;
     margin: 0;
+    width: 100%;
   }
   .book-detail-container .image-container img {
     width: 50%;
   }
   .book-detail-container .image-container p {
-    height: 40px;
-    width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    height: 25%;
+    margin: 2px 0px 5px 0px;
   }
   .book-detail-container .info-container {
-    -webkit-box-flex: 3;
-        -ms-flex: 3;
-            flex: 3;
+    margin-top: 10px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -153,10 +151,20 @@
         -ms-flex-flow: column nowrap;
             flex-flow: column nowrap;
   }
+  .book-detail-container .info-container .book-title {
+    margin-top: 0;
+  }
+  .book-detail-container .info-container .book-title {
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+  }
+  .book-detail-container .info-container .book-authors {
+    margin-top: 0px;
+    height: 15%;
+  }
   .book-detail-container .info-container .book-description {
-    -webkit-box-flex: 2;
-        -ms-flex: 2;
-            flex: 2;
+    height: 70%;
   }
   .book-detail-container .escape-link {
     font-size: 1rem;

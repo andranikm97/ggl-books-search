@@ -42,7 +42,7 @@
           flex: 3;
   height: 30px;
   font-size: 20px;
-  font-family: 'Nunito', sans-serif;
+  font-family: "Nunito", sans-serif;
   border-style: none;
   border-radius: 5px;
   border-color: white;
@@ -104,10 +104,10 @@
 
 .search-container .search-options .option select {
   height: 50%;
-  font-family: 'Nunito', sans-serif;
+  font-family: "Nunito", sans-serif;
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 550px) {
   .search-container .search-field .search-input {
     width: 100%;
     margin-bottom: 5px;

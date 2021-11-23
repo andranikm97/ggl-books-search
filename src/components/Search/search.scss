@@ -26,7 +26,7 @@
       flex: 3;
       height: 30px;
       font-size: 20px;
-      font-family: 'Nunito', sans-serif;
+      font-family: "Nunito", sans-serif;
 
       border-style: none;
       border-radius: 5px;
@@ -65,13 +65,13 @@
       align-items: center;
       select {
         height: 50%;
-        font-family: 'Nunito', sans-serif;
+        font-family: "Nunito", sans-serif;
       }
     }
   }
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 550px) {
   .search-container {
     .search-field {
       .search-input {
