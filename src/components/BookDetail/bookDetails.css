@@ -165,6 +165,7 @@
   }
   .book-detail-container .info-container .book-description {
     height: 70%;
+    font-size: 15px;
   }
   .book-detail-container .escape-link {
     font-size: 1rem;
