@@ -5,6 +5,7 @@ import Search from './components/Search/Search';
 import Books from './components/Books/Books';
 import Loader from './components/Loader/Loader';
 import BookDetail from './components/BookDetail/BookDetail';
+import ErrorContainer from './components/ErrorContainer/ErrorContainer';
 import { useBooksStore } from './contexts/BooksContext';
 import { Observer } from 'mobx-react-lite';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
@@ -38,10 +39,10 @@ const App = () => {
                       searchForMore={booksStore.searchForMore}
                     />
                   ) : booksStore.invalidSearch ? (
-                    <p className='invalid-search-message'>
-                      {' '}
-                      Invalid search! Please enter a valid query{' '}
-                    </p>
+                    <ErrorContainer
+                      withRedirect={false}
+                      message={`Invalid search, please enter a valid query...`}
+                    />
                   ) : (
                     <p className='no-books-message '>
                       Enter a query and hit <i className='fa fa-search' /> or

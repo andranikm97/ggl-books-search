@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import Loader from '../Loader/Loader';
+import ErrorContainer from '../ErrorContainer/ErrorContainer';
 import './bookDetails.css';
 import parse from 'html-react-parser';
 
@@ -15,6 +16,7 @@ const BookDetail = () => {
     return fetch(googleURI + id)
       .then((data) => {
         if (data.status > 400) {
+          console.log(data.status);
           let dataDNE = new Error('entry does not exist', 'DNE');
           throw dataDNE;
         } else {
@@ -41,6 +43,7 @@ const BookDetail = () => {
         });
       })
       .catch((err) => {
+        console.log(err.message);
         if (err.message === 'entry does not exist') {
           setEntryDNE(true);
         }
@@ -48,6 +51,7 @@ const BookDetail = () => {
       .finally(() => setIsLoading(false));
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+  console.log(entryDNE);
   const { title, authors, categories, imageLinks, description } = bookDetails;
   return (
     <div
@@ -57,16 +61,11 @@ const BookDetail = () => {
           <Loader />
         </div>
       ) : entryDNE ? (
-        <div className='error-container'>
-          <Link to='/' className='escape-link'>
-            <div
-              onClick={() => {
-                setEntryDNE(false);
-              }}>
-              Click on this box to return to main page
-            </div>
-          </Link>
-        </div>
+        <ErrorContainer
+          click={() => setEntryDNE(false)}
+          withRedirect={true}
+          message={`Entry ID '${id}' does not exist. Click on this box to return to the main page...`}
+        />
       ) : (
         <div className='book-detail-container'>
           <div className='image-container'>

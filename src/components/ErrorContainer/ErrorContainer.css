@@ -1,0 +1,58 @@
+.error-container {
+  height: 100%;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.error-container {
+  font-size: 75px;
+  color: white;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.error-container:active,
+.error-container :link,
+.error-container :visited {
+  text-decoration: none;
+  color: white;
+}
+
+.error-container div {
+  background-color: red;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.error-container div:hover {
+  cursor: default;
+}
+
+.clickable div {
+  -webkit-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+}
+
+.clickable div:hover {
+  opacity: 0.75;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 500px) {
+  .error-container {
+    font-size: 30px;
+  }
+}
+/*# sourceMappingURL=ErrorContainer.css.map */
