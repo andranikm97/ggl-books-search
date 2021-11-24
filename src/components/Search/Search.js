@@ -57,7 +57,6 @@ const Search = () => {
   };
 
   const { query, category, order } = state;
-  console.log(booksStore.isFormDisabled);
   return (
     <div className='search-container'>
       <div className='search-field'>
