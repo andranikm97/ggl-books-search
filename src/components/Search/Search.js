@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { buildRequestString } from '../../apiRequest';
 import { useBooksStore } from '../../contexts/BooksContext';
 import { Link, useHistory } from 'react-router-dom';
@@ -24,6 +24,7 @@ const Search = () => {
     };
 
     document.addEventListener('keydown', listener);
+
     return () => {
       document.removeEventListener('keydown', listener);
     };
@@ -44,7 +45,7 @@ const Search = () => {
   const handleSearch = () => {
     if (query && category && order) {
       try {
-        booksStore.submitSearch(state, state.queryExists);
+        booksStore.submitSearch(state);
       } catch {
         setState(initialState);
       } finally {
@@ -56,7 +57,7 @@ const Search = () => {
   };
 
   const { query, category, order } = state;
-
+  console.log(booksStore.isFormDisabled);
   return (
     <div className='search-container'>
       <div className='search-field'>

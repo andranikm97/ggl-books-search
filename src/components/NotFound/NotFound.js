@@ -5,15 +5,12 @@ import '../ErrorContainer/ErrorContainer.css';
 const NotFound = () => {
   let history = useHistory();
 
-  let [count, setCount] = useState(10);
   useEffect(() => {
-    setInterval(() => {
-      setCount(count - 1);
-    }, 1000);
     setTimeout(() => {
       history.push('/');
-    }, 10000);
-  });
+    }, 5000);
+    return clearTimeout();
+  }, []);
 
   return (
     <div
@@ -24,8 +21,8 @@ const NotFound = () => {
       }}>
       <Link to='/'>
         <div>
-          404...The page you requested does not exist. Click on this box or wait{' '}
-          {count} seconds to go back home.
+          404...The page you requested does not exist. Click on this box or wait
+          5 seconds to go back home.
         </div>
       </Link>
     </div>
