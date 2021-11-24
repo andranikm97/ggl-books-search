@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { toJS } from 'mobx';
 import './styles/App.css';
 import Search from './components/Search/Search';
@@ -11,9 +11,12 @@ import { useBooksStore } from './contexts/BooksContext';
 import { Observer } from 'mobx-react-lite';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
+// App principal component
 const App = () => {
+  // Get MobX books store
   const booksStore = useBooksStore();
 
+  // Return observed component with router. Search bar is always rendered, below it info changes based on route.
   return (
     <Observer>
       {() => (

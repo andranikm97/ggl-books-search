@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import { useBooksStore } from '../../contexts/BooksContext';
 import '../ErrorContainer/ErrorContainer.css';
 
 const NotFound = () => {
   let history = useHistory();
-
+  let booksStore = useBooksStore();
   useEffect(() => {
+    booksStore.toggleFormDisabled();
     setTimeout(() => {
+      booksStore.clearFormDisabled();
       history.push('/');
     }, 5000);
     return clearTimeout();
@@ -16,6 +19,7 @@ const NotFound = () => {
     <div
       className='error-container click'
       onClick={() => {
+        booksStore.clearFormDisabled();
         clearInterval();
         clearTimeout();
       }}>

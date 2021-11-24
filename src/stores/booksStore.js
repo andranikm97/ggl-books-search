@@ -10,6 +10,16 @@ export function createBooksStore() {
     currentQuery: '',
     waitingOnRequest: false,
     invalidSearch: false,
+    formDisabled: false,
+    toggleFormDisabled: function () {
+      this.formDisabled = !this.formDisabled;
+    },
+    clearFormDisabled: function () {
+      this.formDisabled = false;
+    },
+    getFormDisabled: function () {
+      return this.formDisabled;
+    },
     getBooks: function () {
       return this.books;
     },

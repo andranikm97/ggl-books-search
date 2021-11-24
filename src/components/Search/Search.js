@@ -3,8 +3,10 @@ import { buildRequestString } from '../../apiRequest';
 import { useBooksStore } from '../../contexts/BooksContext';
 import { Link, useHistory } from 'react-router-dom';
 import './search.css';
+import { Observer } from 'mobx-react-lite';
 
 const Search = () => {
+  // Set initial form state
   const initialState = {
     query: '',
     category: 'all',
@@ -12,6 +14,8 @@ const Search = () => {
   };
 
   const [state, setState] = useState(initialState);
+
+  // Reach out to MobX store
   const booksStore = useBooksStore();
   let history = useHistory();
 
@@ -58,49 +62,54 @@ const Search = () => {
 
   const { query, category, order } = state;
   return (
-    <div className='search-container'>
-      <div className='search-field'>
-        <input
-          id='search'
-          name='query'
-          className='search-input'
-          value={query}
-          onChange={handleChange}
-          type='text'
-          placeholder='Enter book name, author, category or etc.'
-        />
-        <Link to='/'>
-          <button
-            disabled={state.query.trim() === ''}
-            className='search-button'
-            onClick={handleSearch}>
-            <i className='fa fa-search' />
-          </button>
-        </Link>
-      </div>
-      <div className='search-options'>
-        <div className='option'>
-          <h3> Category </h3>
-          <select name='category' value={category} onChange={handleChange}>
-            <option value='all'>All categories</option>
-            <option value='art'>Art</option>
-            <option value='biography'>Biography</option>
-            <option value='computers'>Computers</option>
-            <option value='history'>History</option>
-            <option value='medical'>Medical</option>
-            <option value='poetry'>Poetry</option>
-          </select>
-        </div>
+    <Observer>
+      {() => (
+        <div className='search-container'>
+          <div className='search-field'>
+            <input
+              id='search'
+              name='query'
+              className='search-input'
+              value={query}
+              onChange={handleChange}
+              disabled={booksStore.getFormDisabled()}
+              type='text'
+              placeholder='Enter book name, author, category or etc.'
+            />
+            <Link to='/'>
+              <button
+                disabled={state.query.trim() === ''}
+                className='search-button'
+                onClick={handleSearch}>
+                <i className='fa fa-search' />
+              </button>
+            </Link>
+          </div>
+          <div className='search-options'>
+            <div className='option'>
+              <h3> Category </h3>
+              <select name='category' value={category} onChange={handleChange}>
+                <option value='all'>All categories</option>
+                <option value='art'>Art</option>
+                <option value='biography'>Biography</option>
+                <option value='computers'>Computers</option>
+                <option value='history'>History</option>
+                <option value='medical'>Medical</option>
+                <option value='poetry'>Poetry</option>
+              </select>
+            </div>
 
-        <div className='option'>
-          <h3> Sort by </h3>
-          <select name='order' value={order} onChange={handleChange}>
-            <option value='newest'>Newest</option>
-            <option value='relevance'>Relevance</option>
-          </select>
+            <div className='option'>
+              <h3> Sort by </h3>
+              <select name='order' value={order} onChange={handleChange}>
+                <option value='newest'>Newest</option>
+                <option value='relevance'>Relevance</option>
+              </select>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      )}
+    </Observer>
   );
 };
 
