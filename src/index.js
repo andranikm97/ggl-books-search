@@ -5,6 +5,7 @@ import App from './App.js';
 import reportWebVitals from './reportWebVitals';
 import { BooksProvider } from './contexts/BooksContext';
 
+// Notice the provider wrapping the app at domain level
 ReactDOM.render(
   <React.StrictMode>
     <BooksProvider>

@@ -6,16 +6,23 @@ import './bookDetails.css';
 import parse from 'html-react-parser';
 import noImage from '../../noImageFallback.jpeg';
 
+// A detailed component, revealing the details of a certain book requested by the user
 const BookDetail = () => {
   const [bookDetails, setBookDetails] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [entryDNE, setEntryDNE] = useState(false);
 
+  // Rewrite API
   const googleURI = 'https://www.googleapis.com/books/v1/volumes/';
+
+  // Get id from navigated route
   const { id } = useParams();
+
+  // Fetch book details by book ID
   useEffect(() => {
     return fetch(googleURI + id)
       .then((data) => {
+        // Catch any unexisting entries
         if (data.status > 400) {
           console.log(data.status);
           throw new Error('entry does not exist', 'DNE');

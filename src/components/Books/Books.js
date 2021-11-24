@@ -2,6 +2,7 @@ import React from 'react';
 import Book from '../Book/Book';
 import './books.css';
 
+// Renders a list of books
 const Books = ({ books, totalFound, searchForMore }) => {
   return (
     <div className='results-container'>

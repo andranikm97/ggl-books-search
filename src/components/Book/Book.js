@@ -3,8 +3,11 @@ import { Link } from 'react-router-dom';
 import './book.css';
 import noImage from '../../noImageFallback.jpeg';
 
+// A list book item
 const Book = ({ book }) => {
   const [contentReceived, setContentReceived] = useState(true);
+
+  // Set initial state
   const initialState = {
     title: '',
     id: '',
@@ -17,8 +20,8 @@ const Book = ({ book }) => {
 
   useEffect(() => {
     try {
+      // If book is not received, return an empty object
       if (!book || !book.volumeInfo) {
-        // throw new Error("book contents not received");
         setDetails({
           id: '',
           title: '',

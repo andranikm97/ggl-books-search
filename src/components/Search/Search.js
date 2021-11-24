@@ -19,6 +19,7 @@ const Search = () => {
   const booksStore = useBooksStore();
   let history = useHistory();
 
+  // Allow submission on 'Enter' key
   useEffect(() => {
     const listener = (event) => {
       if (event.code === 'Enter' && checkFocus() === 'search') {
@@ -34,10 +35,12 @@ const Search = () => {
     };
   }, [state]);
 
+  // Check if focus is on the input
   const checkFocus = () => {
     return document.activeElement.id;
   };
 
+  // Set state of the form on change
   const handleChange = (event) => {
     const { name, value } = event.target;
     setState((previousState) => ({
@@ -46,13 +49,17 @@ const Search = () => {
     }));
   };
 
+  // Handle submit event
   const handleSearch = () => {
     if (query && category && order) {
+      // Attempt to submit
       try {
         booksStore.submitSearch(state);
       } catch {
+        // Return to initial state at failure
         setState(initialState);
       } finally {
+        // Set current query in MobX store
         booksStore.setCurrentQuery(buildRequestString(state));
       }
     } else {

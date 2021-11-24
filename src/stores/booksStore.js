@@ -2,6 +2,7 @@ import { nanoid } from 'nanoid';
 import { getBooks, loadMoreBooks } from '../apiWorker';
 import { toJS } from 'mobx';
 
+// Books store MobX
 export function createBooksStore() {
   return {
     books: [],

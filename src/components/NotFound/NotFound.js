@@ -3,9 +3,15 @@ import { Link, useHistory } from 'react-router-dom';
 import { useBooksStore } from '../../contexts/BooksContext';
 import '../ErrorContainer/ErrorContainer.css';
 
+// Component that renders on 404
 const NotFound = () => {
+  // Navigation
   let history = useHistory();
+
+  // Access MobX store
   let booksStore = useBooksStore();
+
+  // On mount, disable form and set a timer for 5 seconds
   useEffect(() => {
     booksStore.toggleFormDisabled();
     setTimeout(() => {
