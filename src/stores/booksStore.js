@@ -1,17 +1,19 @@
 import { nanoid } from 'nanoid';
-import { getBooks, loadMoreBooks } from '../apiWorker';
+import { getBooks, getBookDetails, loadMoreBooks } from '../apiWorker';
 import { toJS } from 'mobx';
 
 // Books store MobX
 export function createBooksStore() {
   return {
     books: [],
+    bookDetail: {},
     totalFound: 0,
     page: 1,
     currentQuery: '',
     waitingOnRequest: false,
     invalidSearch: false,
     formDisabled: false,
+    entryDNE: false,
     toggleFormDisabled: function () {
       this.formDisabled = !this.formDisabled;
     },
@@ -23,6 +25,9 @@ export function createBooksStore() {
     },
     getBooks: function () {
       return this.books;
+    },
+    getBook: function () {
+      return this.bookDetail;
     },
     addBooks: function (newBooks) {
       newBooks.forEach((element) => {
@@ -49,6 +54,37 @@ export function createBooksStore() {
     },
     setCurrentQuery: function (string) {
       this.currentQuery = string;
+    },
+    receiveDetails: function (id) {
+      console.log('I got called');
+      this.requestOnOff(true);
+      return getBookDetails(id)
+        .then((data) => {
+          console.log(data);
+          const {
+            title,
+            authors,
+            categories,
+            imageLinks,
+            description,
+            subtitle,
+          } = data.volumeInfo;
+
+          this.bookDetail = {
+            title,
+            authors,
+            categories,
+            imageLinks,
+            description,
+            subtitle,
+          };
+        })
+        .catch((err) => {
+          if (err.message === 'entry does not exist') {
+            this.entryDNEOnOff(true);
+          }
+        })
+        .then(() => this.requestOnOff(false));
     },
     submitSearch: function (options) {
       this.requestOnOff(true);
@@ -82,13 +118,14 @@ export function createBooksStore() {
           const { items } = data;
           this.addBooks(items);
           this.nextPage();
-
-          console.log(toJS(this));
         },
       );
     },
     requestOnOff: function (input) {
       this.waitingOnRequest = input;
+    },
+    entryDNEOnOff: function (input) {
+      this.entryDNE = input;
     },
   };
 }
