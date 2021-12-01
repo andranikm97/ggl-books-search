@@ -1,6 +1,4 @@
-import React, { useEffect } from 'react';
-import { toJS } from 'mobx';
-import './styles/App.css';
+import React from 'react';
 import Search from './components/Search/Search';
 import Books from './components/Books/Books';
 import Loader from './components/Loader/Loader';
@@ -8,8 +6,12 @@ import BookDetail from './components/BookDetail/BookDetail';
 import ErrorContainer from './components/ErrorContainer/ErrorContainer';
 import NotFound from './components/NotFound/NotFound';
 import { useBooksStore } from './contexts/BooksContext';
+
+import { toJS } from 'mobx';
 import { Observer } from 'mobx-react-lite';
+
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import './styles/App.css';
 
 // App principal component
 const App = () => {

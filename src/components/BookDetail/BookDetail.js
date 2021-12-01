@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import Loader from '../Loader/Loader';
 import ErrorContainer from '../ErrorContainer/ErrorContainer';

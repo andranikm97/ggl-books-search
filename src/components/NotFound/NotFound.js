@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useBooksStore } from '../../contexts/BooksContext';
+
 import '../ErrorContainer/ErrorContainer.css';
 
 // Component that renders on 404

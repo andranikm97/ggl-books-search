@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import './book.css';
+
 import noImage from '../../noImageFallback.jpeg';
+import './book.css';
 
 // A list book item
 const Book = ({ book }) => {

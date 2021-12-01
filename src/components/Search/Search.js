@@ -1,9 +1,10 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { buildRequestString } from '../../apiRequest';
 import { useBooksStore } from '../../contexts/BooksContext';
 import { Link, useHistory } from 'react-router-dom';
-import './search.css';
+
 import { Observer } from 'mobx-react-lite';
+import './search.css';
 
 const Search = () => {
   // Set initial form state

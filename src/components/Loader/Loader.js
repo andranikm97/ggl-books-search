@@ -1,6 +1,7 @@
 import React from 'react';
-import './loader.css';
+
 import loader from './loading.png';
+import './loader.css';
 
 // A spinning loader that appears between loads
 const Loader = () => {
