@@ -48,3 +48,11 @@ If you have Docker and Git installed, you can also launch a container with an im
 1) `docker build -t ggl-books-search:1.0.0-prod .`
 2) `docker run --rm -it --name web -p 3000:80 ggl-books-search:1.0.0-prod`
 3) Then go to *http://localhost:3000* on your system.
+
+
+## Screenshots
+
+![1](./readmeAssets/1.png)
+![2](./readmeAssets/2.png)
+![3](./readmeAssets/3.png)
+![4](./readmeAssets/4.png)
